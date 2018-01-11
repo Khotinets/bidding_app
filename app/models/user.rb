@@ -5,11 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
          
   has_one :profile, dependent: :destroy
-#  after_create :init_profile
   accepts_nested_attributes_for :profile
-  
- # def init_profile
-#    self.build_profile.save(validate: false)
- # end
   
 end
