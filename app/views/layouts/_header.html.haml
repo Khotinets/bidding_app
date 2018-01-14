@@ -1,27 +1,17 @@
-//navigation bar
-%nav.navbar.navbar-inverse
-  .container-fluid
-    .navbar-brand= link_to "Bidbook", root_path
-    %ul.nav.navbar-nav.navbar-right
-      %li
-        - if current_user
+%nav.navbar.navbar-expand-lg.navbar-light
+  .navbar-brand= link_to "Bidbook", root_path
+  %button.navbar-toggler{"aria-controls" => "navbarNavAltMarkup", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarNavAltMarkup", "data-toggle" => "collapse", :type => "button"}
+    %span.navbar-toggler-icon
+  #navbarNavAltMarkup.collapse.navbar-collapse
+    .navbar-nav
+      %a.nav-item.nav-link
+      %a.nav-item.nav-link
+      %a.nav-item.nav-link
+      - if current_user
+        .nav-item.nav-link
           = link_to "Logout", destroy_user_session_path
-          %li
-            = link_to "Profile", "#"
-        - else
+        .nav-item.nav-link
+          = link_to "Profile", "#"
+      - else
+        .nav-item.nav-link
           = link_to "Login", new_user_session_path
-      %li
-        = link_to "About", "#"
-      %li.dropdown
-        %a.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
-          Dropdown
-          %span.caret
-        %ul.dropdown-menu
-          %li
-            %a{:href => "#"} Action
-          %li.divider{:role => "separator"}
-          %li
-            %a{:href => "#"} Separated link
-          %li.divider{:role => "separator"}
-
-
