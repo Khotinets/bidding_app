@@ -1,0 +1,19 @@
+- provide(:title, "Products")
+
+%p#notice= notice
+%h1 Products
+.row
+  - @products.each do |product|
+    .col-4
+      .card
+        .card-header
+          %h5.card-title= link_to product.name, product
+        .card-body
+          %img.card-img-top{:src => "https://www.w3schools.com/css/paris.jpg"}
+          %p.card-text= product.user.profile.name
+        %ul.list-group.list-group-flush
+          %li.list-group-item Cras justo odio
+          %li.list-group-item Dapibus ac facilisis in
+          %li.list-group-item Vestibulum at eros
+        .card-footer
+          %small.text-muted= "Created: " + product.created_at.to_s

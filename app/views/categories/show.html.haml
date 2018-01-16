@@ -1,12 +1,14 @@
 - provide(:title, @category.name + " - Category")
-
 %p#notice= notice
-%p
-  %strong Name:
-  = @category.name
-%p
-  %strong Description:
-  = @category.description
-= link_to 'Edit', edit_category_path(@category)
-|
-= link_to 'Back', categories_path
+
+.row.pt-5.pb-5
+  .col
+  .col-10
+    %ul.list-group
+      %li.list-group-item.active= @category.name
+      %li.list-group-item
+        = @category.description
+        .text-right
+          %a.btn.btn-primary.btn-sm{:href => edit_category_path, role: "button"} Edit
+          = link_to 'Back', categories_path, role: 'button', class: "btn btn-primary btn-sm"
+  .col

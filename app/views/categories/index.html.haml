@@ -1,1 +1,11 @@
-index page
+- provide(:title, "Categories")
+%p#notice= notice
+
+.row.pt-5.pb-5
+    .col
+    .col-6
+        .list-group
+            %button.list-group-item.list-group-item-action.active{:type => "button"} Categories
+            - @category.each do |c|
+                %a.list-group-item.list-group-item-action.text-center{:href => "#{category_path(c)}"}= c.name
+    .col

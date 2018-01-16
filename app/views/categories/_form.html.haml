@@ -1,10 +1,11 @@
-- provide(:title, "Editing category")
-
-= form_with(model: category, local: true) do |c|
+- provide(:title, "Editing" + @category.name + "Category")
+- provide(:button_text, "Update")
+= form_for(@category) do |f|
+  //= render 'shared/error_messages', object: @user
   .form-group
-    = c.label :name
-    = c.text_field :name, class: "form-control", id: :category_name
+    = f.label :name
+    = f.text_field :name, class: 'form-control'
   .form-group
-    = c.label :description
-    = c.text_area :description, class: "form-control", id: :category_descritpion
-  = c.submit "Update Category", class: "btn btn-primary btn-block"
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+  = f.submit yield(:button_text), class: "btn btn-primary btn-block"

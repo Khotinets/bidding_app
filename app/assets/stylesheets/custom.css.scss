@@ -25,6 +25,13 @@ p {
   line-height: 1.7em;
 }
 
+.btn{
+  a{
+    text-decoration:none;
+    color: white;
+  }
+}
+
 /*header*/
 .navbar{
   a {
@@ -51,3 +58,6 @@ p {
     }
   }
 }
+
+
+/* Categories */
