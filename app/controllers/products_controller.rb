@@ -14,7 +14,7 @@ class ProductsController < ApplicationController
 
   # GET /products/new
   def new
-    @product = Product.new
+    @product = current_user.products.build
   end
 
   # GET /products/1/edit
@@ -24,17 +24,15 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(product_params)
-    if user_signed_in?
-      @product.user_id = current_user.id
-      respond_to do |format|
-        if @product.save
-          format.html { redirect_to @product, notice: 'Product was successfully created.' }
-          format.json { render :show, status: :created, location: @product }
-        else
-          format.html { render :new }
-          format.json { render json: @product.errors, status: :unprocessable_entity }
-        end
+    @product = current_user.products.build(product_params)
+    #@product.user_id = current_user.id
+    respond_to do |format|
+      if @product.save
+        format.html { redirect_to @product, notice: 'Product was successfully created.' }
+        format.json { render :show, status: :created, location: @product }
+      else
+        format.html { render :new }
+        format.json { render json: @product.errors, status: :unprocessable_entity }
       end
     end
   end

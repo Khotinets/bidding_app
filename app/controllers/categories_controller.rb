@@ -1,9 +1,14 @@
 class CategoriesController < ApplicationController
-    
+    before_action :authenticate_admin!, :except => [:show, :index]
+
     def index
         @category = Category.all
     end
     
+    def show
+        @category = Category.find(params[:id])
+    end
+
     def new
         @category = Category.new
     end
@@ -34,9 +39,6 @@ class CategoriesController < ApplicationController
         end
     end
     
-    def show
-        @category = Category.find(params[:id])
-    end
     private
         def set_category
             @category = Category.find(params[:id])

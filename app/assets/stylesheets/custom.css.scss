@@ -1,5 +1,7 @@
 @import "bootstrap";
 
+$shadow: 0px 1px 5px 0px #e6e2e2;
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
@@ -38,6 +40,7 @@ p {
     text-decoration: none;
     letter-spacing: 1px;
   }
+  box-shadow: $shadow;
 }
 
 /*jumbotron*/
@@ -57,6 +60,16 @@ p {
       color: white;
     }
   }
+}
+
+/*Cards*/
+.card {
+  box-shadow: $shadow;
+  border: none;
+  .card-header{
+    border: none;
+    
+  } 
 }
 
 
