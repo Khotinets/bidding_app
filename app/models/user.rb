@@ -9,5 +9,7 @@ class User < ApplicationRecord
   
   has_many :products, dependent: :destroy
   has_many :auctions
-  
+  has_many :images
+  has_many :favorites
+  has_many :bids
 end
