@@ -1,19 +1,41 @@
 - provide(:title, "Products")
-
 %p#notice= notice
-%h1 Products
-.row
-  - @products.each do |product|
-    .col-4
-      .card
-        .card-header
-          %h5.card-title= link_to product.name, product
-        .card-body
-          %img.card-img-top{:src => "https://www.w3schools.com/css/paris.jpg"}
-          %p.card-text= product.user.profile.name
-        %ul.list-group.list-group-flush
-          %li.list-group-item Cras justo odio
-          %li.list-group-item Dapibus ac facilisis in
-          %li.list-group-item Vestibulum at eros
-        .card-footer
-          %small.text-muted= "Created: " + product.created_at.to_s
+.text-center.mb-3
+  %h5 Products
+  
+.row.no-gutters
+  .col
+  .col-10
+    - @products.each do |product|
+      .product
+        .card.mb-3
+          .card-body
+            .row.no-gutters
+              .col-2.productleft
+                %img{:src => "https://www.w3schools.com/css/paris.jpg"}
+              .col-10.productright
+                .row.no-gutters
+                  /top-right
+                  .col-9.productname.pt-2
+                    = link_to product.name, product
+                  .col-3.text-right.productlot.pt-2.pr-3
+                    = "Lot number: " + product.id.to_s.rjust(5, '0')
+                  /middle-right
+                  .col-2.productprice
+                    .badge.badge-success.pl-1.pr-1
+                      = "$ " + product.minimal_price.to_s
+                  .col-4.auction.pl-1.pr-1
+                    Auction starts in 15 hours 20 seconds
+                  .col-3.pr-3
+                    = link_to "Add to favorites", product, role: "button", class: "btn btn-primary btn-sm btn-block"
+                  .col-3.pr-3
+                    = link_to "Buy", product, role: "button", class: "btn btn-primary btn-sm btn-block"
+                  /bottom-right
+                  .col-6
+                  .col-2.align-self-end.categoryname.pb-2
+                    = "Category: " + product.category.name
+                  .col-2.align-self-end.username.pb-2
+                    = "Author: " + product.user.profile.name
+                  .col-2.align-self-end.text-right.datetime.pb-2.pr-3
+                    = product.created_at.strftime("%d.%m.%y - %H:%M")
+  .col

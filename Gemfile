@@ -22,7 +22,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'haml', '5.0.4'
 gem 'bootstrap', '~> 4.0.0.beta3'
-gem 'bootstrap-sass'
+gem "font-awesome-rails"
 gem 'autoprefixer-rails'
 
 # Use ActiveModel has_secure_password

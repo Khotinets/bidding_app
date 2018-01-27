@@ -1,6 +1,26 @@
 @import "bootstrap";
+@import "font-awesome";
 
 $shadow: 0px 1px 5px 0px #e6e2e2;
+@mixin image {
+      height:6vw;
+      width: auto;
+      margin: 1vw;
+    }
+    
+/*Bootstrap*/
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  max-height: 100px4;
+}
+.badge{
+  width: 50%;
+}
+/*Typography*/
+body {
+  background-color: #fbfbfb;
+}
 
 h1, h2, h3, h4, h5, h6 {
   line-height: 1;
@@ -41,6 +61,7 @@ p {
     letter-spacing: 1px;
   }
   box-shadow: $shadow;
+  background-color: white;
 }
 
 /*jumbotron*/
@@ -72,5 +93,42 @@ p {
   } 
 }
 
+/*Products*/
+.product{
+  .row{
+    height: 100%;
+  }
+  .card{
+    //border-radius: 0;
+    .card-body{
+      min-height: 8vw;
+      padding: 0;
+      overflow: hidden;
+  }
+  }
+  a {
+    text-decoration: none;
+    &:hover {
+      color: #00adff8c;
+    }
+  }
+  
+  .productleft{
+    img {
+      @include image
+    }
+  }
+  .productright{
+    .username, .productlot, .categoryname, .datetime{
+      font-size: 0.8em;
+      color: grey;
+    }
+    .auction{
+      font-size: 0.8em;
+      color: #3a3a3a;
+      font-style: italic;
+    }
+  }
+}
 
 /* Categories */

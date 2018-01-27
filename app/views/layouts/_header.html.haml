@@ -4,17 +4,23 @@
     %span.navbar-toggler-icon
   #navbarNavAltMarkup.collapse.navbar-collapse
     .navbar-nav
-      %a.nav-item.nav-link
-      %a.nav-item.nav-link
-      %a.nav-item.nav-link
+      .nav-item.nav-link
+        = link_to "Products", products_path
+      .nav-item.nav-link
+        = link_to "Auctions", auctions_path
       - if current_user || current_admin
+        - if current_admin
+          .nav-item.nav-link
+            = link_to "Categories", categories_path
+          .nav-item.nav-link
+            = link_to "Profile", '#'
+        - else
+          .nav-item.nav-link
+            = link_to "Profile", edit_user_registration_path
         .nav-item.nav-link
           = link_to "Logout", destroy_user_session_path
-        .nav-item.nav-link
-          - if current_admin
-            = link_to "Profile", '#'
-          - else
-            = link_to "Profile", edit_user_registration_path
       - else
         .nav-item.nav-link
           = link_to "Login", new_user_session_path
+        .nav-item.nav-link
+          = link_to "Signup", new_user_registration_path
