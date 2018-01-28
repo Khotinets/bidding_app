@@ -1,0 +1,19 @@
+---
+development:
+  cloud_name: khotinets
+  api_key: '528768126431432'
+  api_secret: liVXgr71OMhamSk2ncO0Y3kPcLc
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: khotinets
+  api_key: '528768126431432'
+  api_secret: liVXgr71OMhamSk2ncO0Y3kPcLc
+  enhance_image_tag: true
+  static_image_support: true
+test:
+  cloud_name: khotinets
+  api_key: '528768126431432'
+  api_secret: liVXgr71OMhamSk2ncO0Y3kPcLc
+  enhance_image_tag: true
+  static_image_support: false

@@ -1,0 +1,21 @@
+= form_with(model: image, local: true) do |form|
+  - if image.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(image.errors.count, "error")
+        prohibited this image from being saved:
+      %ul
+        - image.errors.full_messages.each do |message|
+          %li= message
+  .field
+    = form.label :user_id
+    = form.number_field :user_id, id: :image_user_id
+  .field
+    = form.label :product_id
+    = form.number_field :product_id, id: :image_product_id
+  .field
+    = form.label :image_url
+    = form.hidden_field(:image_url_cache)
+    = form.file_field (:image_url)
+  .actions
+    = form.submit

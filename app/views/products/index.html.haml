@@ -12,7 +12,7 @@
           .card-body
             .row.no-gutters
               .col-2.productleft
-                %img{:src => "https://www.w3schools.com/css/paris.jpg"}
+                = image_tag(product.images.first.image_url.url, alt: 'Image') if !product.images.first.nil?
               .col-10.productright
                 .row.no-gutters
                   /top-right
@@ -26,7 +26,8 @@
                       .badge.badge-success.pl-1.pr-1
                         = "$ " + product.minimal_price.to_s
                     - else 
-                      auction
+                      .badge.badge-danger.pl-1.pr-1
+                        Auction
                   .col-4.auction.pl-1.pr-1
                     Auction starts in 15 hours 20 seconds
                   .col-3.pr-3
