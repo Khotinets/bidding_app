@@ -5,4 +5,8 @@ class Product < ApplicationRecord
     has_many :images
     has_many :favorites
     has_many :bids
+    
+    def has_auction?
+        auction.present?
+    end
 end

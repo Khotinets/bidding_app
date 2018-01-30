@@ -1,6 +1,7 @@
 class Auction < ApplicationRecord
-    belongs_to :product, -> {where auction_status: true}
+    belongs_to :product
     belongs_to :user
     has_many :bids
     
+    validates_uniqueness_of :product_id
 end

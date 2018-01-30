@@ -22,10 +22,10 @@
                     = "Lot number: " + product.id.to_s.rjust(5, '0')
                   /middle-right
                   .col-2.productprice
-                    - if product.minimal_price? && !product.auction_status
+                    - if !product.has_auction? && product.minimal_price?
                       .badge.badge-success.pl-1.pr-1
                         = "$ " + product.minimal_price.to_s
-                    - else 
+                    - elsif product.minimal_price?
                       .badge.badge-danger.pl-1.pr-1
                         Auction
                   .col-4.auction.pl-1.pr-1

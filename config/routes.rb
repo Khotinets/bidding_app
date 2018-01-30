@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   
   resources :images
   resources :favorites
-  resources :bids
   resources :auctions
   resources :products
   resources :categories
@@ -11,7 +10,8 @@ Rails.application.routes.draw do
   devise_for :users, path: 'users', controllers: { registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords", unlocks: "users/unlocks", confirmations: "user/confirmations" }
   
   devise_scope :user do  
-    get '/users/sign_out' => 'devise/sessions#destroy'
+   get '/users/sign_out' => 'devise/sessions#destroy'
+   resources :profiles
   end
   
   devise_scope :admin do  
