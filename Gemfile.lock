@@ -114,6 +114,8 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     netrc (0.11.0)
+    nicescroll-rails (3.5.4.1)
+      railties (>= 3.1)
     nio4r (2.2.0)
     nokogiri (1.8.1)
       mini_portile2 (~> 2.3.0)
@@ -227,6 +229,7 @@ DEPENDENCIES
   jbuilder (= 2.7.0)
   jquery-rails (= 4.3.1)
   listen (= 3.1.5)
+  nicescroll-rails
   pg (= 0.20.0)
   rails (= 5.1.4)
   sass-rails (= 5.0.6)

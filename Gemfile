@@ -26,7 +26,7 @@ gem 'font-awesome-sass', '~> 4.7.0'
 gem 'carrierwave'
 gem 'cloudinary'
 gem 'autoprefixer-rails'
-
+gem 'nicescroll-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

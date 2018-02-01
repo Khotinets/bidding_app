@@ -13,6 +13,18 @@
 //= require jquery3
 //= require popper
 //= require jquery_ujs
-//= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree
+//= require jquery.nicescroll
+/*global $*/
+
+$( document ).ready(function() {
+    $(".product-small-image").click(function(){
+        $(".product-large-image").attr("src", $(this).attr("src"));
+    });
+    
+    $(function() {  
+    $(".selector").niceScroll({cursorcolor:"#007bff"});
+});
+});
+

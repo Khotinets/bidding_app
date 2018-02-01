@@ -141,4 +141,34 @@ p {
   }
 }
 
+/*Product Show*/
+.product-show{
+  .product-images-container{
+    .image{
+      img{
+        @include image;
+        width: 100%;
+        margin: 0;
+        height: auto;
+      }
+      height: 250px;
+    }
+    .images-row{
+      img{
+        width: auto;
+        height: 60px;
+        margin-top: 10px;
+        margin-bottom: 5px;
+        display: inline;
+      }
+      width: 100%;
+      height: auto;
+      overflow: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding-bottom: 8px;
+    }
+  }
+}
+
 /* Categories */

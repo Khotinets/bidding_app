@@ -2,44 +2,44 @@
 %p#notice= notice
 .text-center.mb-3
   %h5 Products
-  
-.row.no-gutters
-  .col
-  .col-10
-    - @products.each do |product|
-      .product
-        .card.mb-3
-          .card-body
-            .row.no-gutters
-              .col-2.productleft
-                = image_tag(product.images.first.image_url.url, alt: 'Image') if !product.images.first.nil?
-              .col-10.productright
-                .row.no-gutters
-                  /top-right
-                  .col-9.productname.pt-2
-                    = link_to product.name, product
-                  .col-3.text-right.productlot.pt-2.pr-3
-                    = "Lot number: " + product.id.to_s.rjust(5, '0')
-                  /middle-right
-                  .col-2.productprice
-                    - if !product.has_auction? && product.minimal_price?
-                      .badge.badge-success.pl-1.pr-1
-                        = "$ " + product.minimal_price.to_s
-                    - elsif product.minimal_price?
-                      .badge.badge-danger.pl-1.pr-1
-                        Auction
-                  .col-4.auction.pl-1.pr-1
-                    Auction starts in 15 hours 20 seconds
-                  .col-3.pr-3
-                    = link_to "Add to favorites", product, role: "button", class: "btn btn-primary btn-sm btn-block"
-                  .col-3.pr-3
-                    = link_to "Buy", product, role: "button", class: "btn btn-primary btn-sm btn-block"
-                  /bottom-right
-                  .col-6
-                  .col-2.align-self-end.categoryname.pb-2
-                    = "Category: " + product.category.name
-                  .col-2.align-self-end.username.pb-2
-                    = "Author: " + product.user.profile.name
-                  .col-2.align-self-end.text-right.datetime.pb-2.pr-3
-                    = product.created_at.strftime("%d.%m.%y - %H:%M")
-  .col
+.container  
+  .row.no-gutters
+    .col
+    .col-10
+      - @products.each do |product|
+        .product
+          .card.mb-3
+            .card-body
+              .row.no-gutters
+                .col-2.productleft
+                  = cl_image_tag(product.images.first.image_url, alt: 'Image') if !product.images.first.nil?
+                .col-10.productright
+                  .row.no-gutters
+                    /top-right
+                    .col-9.productname.pt-2
+                      = link_to product.name, product
+                    .col-3.text-right.productlot.pt-2.pr-3
+                      = "Lot number: " + product.id.to_s.rjust(5, '0')
+                    /middle-right
+                    .col-2.productprice
+                      - if !product.has_auction? && product.minimal_price?
+                        .badge.badge-success.pl-1.pr-1
+                          = "$ " + product.minimal_price.to_s
+                      - elsif product.minimal_price?
+                        .badge.badge-danger.pl-1.pr-1
+                          Auction
+                    .col-4.auction.pl-1.pr-1
+                      Auction starts in 15 hours 20 seconds
+                    .col-3.pr-3
+                      = link_to "Add to favorites", product, role: "button", class: "btn btn-primary btn-sm btn-block"
+                    .col-3.pr-3
+                      = link_to "Buy", product, role: "button", class: "btn btn-primary btn-sm btn-block"
+                    /bottom-right
+                    .col-6
+                    .col-2.align-self-end.categoryname.pb-2
+                      = "Category: " + product.category.name
+                    .col-2.align-self-end.username.pb-2
+                      = "Author: " + product.user.profile.name
+                    .col-2.align-self-end.text-right.datetime.pb-2.pr-3
+                      = product.created_at.strftime("%d.%m.%y - %H:%M")
+    .col
