@@ -8,8 +8,8 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :profile
   
   has_many :products, dependent: :destroy
+  has_many :favorites, dependent: :destroy
   has_many :auctions
   has_many :images
-  has_many :favorites
   has_many :bids
 end

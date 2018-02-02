@@ -146,12 +146,12 @@ p {
   .product-images-container{
     .image{
       img{
-        @include image;
         width: 100%;
         margin: 0;
-        height: auto;
+        height: 250px;
       }
       height: 250px;
+      overflow: hidden;
     }
     .images-row{
       img{
@@ -168,6 +168,9 @@ p {
       white-space: nowrap;
       padding-bottom: 8px;
     }
+  }
+  .description{
+    
   }
 }
 
