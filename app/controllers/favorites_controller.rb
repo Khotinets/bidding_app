@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
-
+  respond_to :js
   # GET /favorites
   # GET /favorites.json
   def index
@@ -60,7 +60,20 @@ class FavoritesController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def favorite
+    @user = current_user
+    @product = Product.find(params[:product_id])
+    @user.favorite!(@product)
+  end
 
+  def unfavorite
+    @user = current_user
+    @favorite = @user.favorites.find_by_product_id(params[:product_id])
+    @product = Product.find(params[:product_id])
+    @favorite.destroy!
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_favorite

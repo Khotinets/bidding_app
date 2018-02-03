@@ -27,6 +27,7 @@ $( document ).ready(function() {
     /* Product show - small images scrolling */
     $(function() {  
     $(".selector").niceScroll({cursorcolor:"#dad6d6"});
+    
 });
 });
 

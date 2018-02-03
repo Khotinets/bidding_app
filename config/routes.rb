@@ -18,6 +18,9 @@ Rails.application.routes.draw do
    get '/admins/sign_out' => 'devise/sessions#destroy'
   end
   
+  match 'fav', to: 'favorites#favorite', via: :post
+  match 'unfavorite', to: 'favorites#unfavorite', via: :delete
+  
   root 'static_pages#index'
  
 end
