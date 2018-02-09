@@ -19,7 +19,7 @@
 /*global $*/
 
 $( document ).ready(function() {
-    /* Product sow - replace large image with clicked one */
+    /* Product show - replace large image with clicked one */
     $(".product-small-image").click(function(){
         $(".product-large-image").attr("src", $(this).attr("src"));
     });
@@ -27,7 +27,6 @@ $( document ).ready(function() {
     /* Product show - small images scrolling */
     $(function() {  
     $(".selector").niceScroll({cursorcolor:"#dad6d6"});
-    
 });
 });
 

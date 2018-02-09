@@ -31,12 +31,8 @@
                     .col-4.auction.pl-1.pr-1
                       Auction starts in 15 hours 20 seconds
                     .col-3.pr-3
-                      /Favorite product button
-                      - if user_signed_in?
-                        - if current_user.favorite?(product)
-                          =link_to "Remove from favorites", unfavorite_path(product_id: product.id), method: :delete, role: "button", class: "btn btn-primary btn-sm btn-block"
-                        -else
-                          = link_to "Add to favorites", fav_path(product_id: product.id), method: :post, role: "button", class: "btn btn-primary btn-sm btn-block"
+                      /Favorite product button helper call
+                      = choose_fav_button(product)
                     .col-3.pr-3
                       = link_to "Buy", product, role: "button", class: "btn btn-primary btn-sm btn-block"
                     /bottom-right

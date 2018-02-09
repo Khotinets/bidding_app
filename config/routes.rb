@@ -3,7 +3,15 @@ Rails.application.routes.draw do
   resources :images
   resources :favorites
   resources :auctions
-  resources :products
+  resources :products do
+   resource :favorite  do
+    member do
+     match 'fav', to: 'favorites#favorite', via: :post
+     match 'unfavorite', to: 'favorites#unfavorite', via: :delete
+    end
+   end
+  end
+    
   resources :categories
   
   devise_for :admins, path: 'admins', controllers: { registrations: "admins/registrations", sessions: "admins/sessions", passwords: "admins/passwords", unlocks: "admins/unlocks", confirmations: "admins/confirmations" }
@@ -17,9 +25,6 @@ Rails.application.routes.draw do
   devise_scope :admin do  
    get '/admins/sign_out' => 'devise/sessions#destroy'
   end
-  
-  match 'fav', to: 'favorites#favorite', via: :post
-  match 'unfavorite', to: 'favorites#unfavorite', via: :delete
   
   root 'static_pages#index'
  

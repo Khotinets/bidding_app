@@ -9,4 +9,5 @@ class Product < ApplicationRecord
     def has_auction?
         auction.present?
     end
+
 end

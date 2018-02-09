@@ -1,6 +1,6 @@
 class FavoritesController < ApplicationController
   before_action :set_favorite, only: [:show, :edit, :update, :destroy]
-  respond_to :js
+  respond_to :js, :json, :html
   # GET /favorites
   # GET /favorites.json
   def index
@@ -65,6 +65,9 @@ class FavoritesController < ApplicationController
     @user = current_user
     @product = Product.find(params[:product_id])
     @user.favorite!(@product)
+    respond_to do |format|
+     format.js
+    end
   end
 
   def unfavorite
@@ -72,6 +75,9 @@ class FavoritesController < ApplicationController
     @favorite = @user.favorites.find_by_product_id(params[:product_id])
     @product = Product.find(params[:product_id])
     @favorite.destroy!
+    respond_to do |format|
+     format.js
+    end
   end
   
   private
