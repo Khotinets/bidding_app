@@ -59,7 +59,15 @@ class ProductsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def auction_all
+    @products = Product.joins(:auction)
+  end
+  
+  def without_auction
+    @products = Product.all - Product.joins(:auction)
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product

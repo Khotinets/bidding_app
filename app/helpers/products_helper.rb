@@ -1,4 +1,5 @@
 module ProductsHelper
+    
     #Rendering like or unlike button
     def choose_fav_button(product)
         if user_signed_in?

@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   resources :favorites
   resources :auctions
   resources :products do
+   collection do
+    match 'auction_all', to: 'products#auction_all', via: :get
+    match 'without_auction', to: 'products#without_auction', via: :get
+   end
    resource :favorite  do
     member do
      match 'fav', to: 'favorites#favorite', via: :post
