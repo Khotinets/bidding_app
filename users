@@ -1,0 +1,11 @@
+                     List of relations
+ Schema |         Name         |   Type   |     Owner      
+--------+----------------------+----------+----------------
+ public | ar_internal_metadata | table    | otwzodkcfzcjff
+ public | profiles             | table    | otwzodkcfzcjff
+ public | profiles_id_seq      | sequence | otwzodkcfzcjff
+ public | schema_migrations    | table    | otwzodkcfzcjff
+ public | users                | table    | otwzodkcfzcjff
+ public | users_id_seq         | sequence | otwzodkcfzcjff
+(6 rows)
+
