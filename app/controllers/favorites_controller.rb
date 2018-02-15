@@ -1,24 +1,12 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_favorite, only: [:show, :destroy]
   respond_to :js, :json, :html
   # GET /favorites
   # GET /favorites.json
   def index
-    @favorites = Favorite.all
-  end
-
-  # GET /favorites/1
-  # GET /favorites/1.json
-  def show
-  end
-
-  # GET /favorites/new
-  def new
-    @favorite = Favorite.new
-  end
-
-  # GET /favorites/1/edit
-  def edit
+    #Find all products by favorites created by current  user
+    @products = Product.joins(favorites: :user).where(favorites: {user_id: current_user.id})
   end
 
   # POST /favorites
@@ -32,20 +20,6 @@ class FavoritesController < ApplicationController
         format.json { render :show, status: :created, location: @favorite }
       else
         format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /favorites/1
-  # PATCH/PUT /favorites/1.json
-  def update
-    respond_to do |format|
-      if @favorite.update(favorite_params)
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully updated.' }
-        format.json { render :show, status: :ok, location: @favorite }
-      else
-        format.html { render :edit }
         format.json { render json: @favorite.errors, status: :unprocessable_entity }
       end
     end

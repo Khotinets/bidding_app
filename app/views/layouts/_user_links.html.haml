@@ -1,0 +1,9 @@
+.nav-item.dropdown
+  %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
+    = current_user.profile.name
+  .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+    .dropdown-item= link_to "Profile", edit_user_registration_path
+    .dropdown-item= link_to "My products", user_products_path
+    .dropdown-item= link_to "Favorited products", favorites_path
+    .dropdown-divider
+    .dropdown-item= link_to "Logout", destroy_user_session_path

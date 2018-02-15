@@ -10,5 +10,11 @@
     = javascript_include_tag 'application'
   %body
     = render 'layouts/header'
+    - if notice
+      .row.no-gutters.pt-3
+        .col
+        .col-10
+          %p#notice.alert.alert-primary= notice
+        .col
     = yield
   

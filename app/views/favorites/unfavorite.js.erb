@@ -1,1 +1,1 @@
-$('#<%= @product.id %> ').replaceWith('<%= escape_javascript(render "/favorites/fav_button", product: @product) %>');
+$('#<%= @product.id %> ').replaceWith('<%= escape_javascript(render "favorites/fav_button", product: @product) %>');

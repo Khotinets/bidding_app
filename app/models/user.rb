@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_many :auctions
   has_many :images
   has_many :bids
-  
   def favorite!(product)
     self.favorites.create(product_id: product.id)
   end

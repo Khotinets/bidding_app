@@ -1,18 +1,13 @@
 - provide(:title, "Products")
-%p#notice= notice
-.text-center.mb-3
+.text-center.mb-3.mt-3
   %h5 Products
 .row.no-gutters
-  .col-3.text-center
-    .btn-group.btn-group-sm{"aria-label" => "Basic example", :role => "group"}
-      .btn.btn-secondary.all-prods
-        = link_to "All", products_path, remote: "true", role: "button"
-      .btn.btn-secondary.auction-prods
-        = link_to "Auctions", auction_all_products_path, remote: "true", role: "button"
-      .btn.btn-secondary.prods
-        = link_to "Products", without_auction_products_path, remote: "true", role: "button"
-
+  .col-2.ml-5.mr-5
+    .list-group
+      = link_to "All", products_path, remote: "true", role: "button", class: "list-group-item"
+      = link_to "Auctions", auction_all_products_path, remote: "true", role: "button", class: "list-group-item"
+      = link_to "Products", without_auction_products_path, remote: "true", role: "button", class: "list-group-item"
   .col-7
     .products
       = render '/products/products'
-  .col-4
+  .col-3

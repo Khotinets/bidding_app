@@ -8,25 +8,10 @@
         = link_to "Products", products_path
       .nav-item.nav-link
         = link_to "Auctions", auctions_path
-      - if current_user || current_admin
-        - if current_admin
-          .nav-item.nav-link
-            = link_to "Categories", categories_path
-          .nav-item.nav-link
-            = link_to "Profile", '#'
-        - else
-          .nav-item.nav-link
-            = link_to "Profile", edit_user_registration_path
-        .nav-item.nav-link
-          = link_to "Logout", destroy_user_session_path
-      - else
-        .nav-item.nav-link
-          = link_to "Login", new_user_session_path
-        .nav-item.nav-link
-          = link_to "Signup", new_user_registration_path
-    .nav.navbar-nav.ml-auto.w-100.justify-content-end
-      .nav-item.nav-link
-        %a{:href => "https://github.com/Khotinets/biddings_app", :target => "_blank"}
-          = icon('github', class: "fa-2x")
-
       
+    .navbar-nav.ml-auto.justify-content-end
+      /*Render links allowed to user or admin*/
+      = render '/layouts/personal_links'
+      .nav-item.nav-link.pl-5.pr-4
+        %a{:href => "https://github.com/Khotinets/biddings_app", :target => "_blank"}
+          = icon('github', class: "fa-lg")

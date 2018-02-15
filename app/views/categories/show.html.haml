@@ -2,12 +2,12 @@
 
 .row.pt-5.pb-5
   .col
-  .col-10
+  .col-6
     %ul.list-group
       %li.list-group-item.active= @category.name
       %li.list-group-item
         = @category.description
         .text-right
-          %a.btn.btn-primary.btn-sm{:href => edit_category_path, role: "button"} Edit
+          = link_to 'Edit', edit_category_path, role: "button", class: "btn btn-primary btn-sm" if admin_signed_in?
           = link_to 'Back', categories_path, role: 'button', class: "btn btn-primary btn-sm"
   .col

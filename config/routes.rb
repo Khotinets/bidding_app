@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   
-  resources :images
-  resources :favorites
-  resources :auctions
+  namespace :user do
+   resources :products
+  end
+ 
   resources :products do
    collection do
     match 'auction_all', to: 'products#auction_all', via: :get
@@ -15,7 +16,10 @@ Rails.application.routes.draw do
     end
    end
   end
-    
+  
+  resources :images
+  resources :favorites
+  resources :auctions
   resources :categories
   
   devise_for :admins, path: 'admins', controllers: { registrations: "admins/registrations", sessions: "admins/sessions", passwords: "admins/passwords", unlocks: "admins/unlocks", confirmations: "admins/confirmations" }
@@ -29,7 +33,6 @@ Rails.application.routes.draw do
   devise_scope :admin do  
    get '/admins/sign_out' => 'devise/sessions#destroy'
   end
-  
   root 'static_pages#index'
  
 end

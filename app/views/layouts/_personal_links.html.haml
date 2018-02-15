@@ -1,0 +1,10 @@
+- if someone_signed_in?
+  - if current_admin
+    = render '/layouts/admin_links'
+  - if current_user
+    = render '/layouts/user_links'
+- else
+  .nav-item.nav-link
+    = link_to "Login", new_user_session_path
+  .nav-item.nav-link
+    = link_to "Signup", new_user_registration_path

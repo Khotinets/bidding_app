@@ -1,5 +1,5 @@
 
-= form_with(model: product, local: true) do |form|
+= form_for([:user, @product]) do |form|
   - if product.errors.any?
     #error_explanation
       %h2

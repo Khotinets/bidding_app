@@ -1,0 +1,10 @@
+.text-center.mb-3.mt-3
+  %h5 My products
+.row.no-gutters
+  .col-2.ml-5.mr-5
+    .list-group
+      = link_to "Create new product", new_user_product_path, class: "list-group-item"
+  .col-7
+    .products
+      = render '/products/products'
+  .col-3

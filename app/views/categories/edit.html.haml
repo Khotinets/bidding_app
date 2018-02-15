@@ -1,6 +1,11 @@
-
-%h1 Editing Category
-= render 'form'
-= link_to 'Show', @category
-|
-= link_to 'Back', category_path
+- provide(:title, 'Editing ' + @category.name + " Category")
+- provide(:button_text, 'Update')
+%h5.text-center.pt-3.pb-3 Editing Category
+.row
+    .col
+    .col-4
+        = render 'form'
+        = link_to 'Delete', category_path, method: :delete
+        |
+        = link_to 'Back', category_path
+    .col
