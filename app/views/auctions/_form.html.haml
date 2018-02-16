@@ -1,0 +1,22 @@
+= form_for (Auction.new) do |f|
+  = f.hidden_field :product_id, :value => @product.id
+  = f.hidden_field :user_id, :value => @product.user_id
+  = f.submit "Add to auction", class: "btn btn-primary btn-sm"
+-#
+  = form_with(model: auction, local: true) do |form|
+    - if auction.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(auction.errors.count, "error")
+          prohibited this auction from being saved:
+        %ul
+          - auction.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = form.label :product_id
+      = form.number_field :product_id, id: :auction_product_id
+    .field
+      = form.label :user_id
+      = form.number_field :user_id, id: :auction_user_id
+    .actions
+      = form.submit

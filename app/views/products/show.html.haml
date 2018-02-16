@@ -3,11 +3,12 @@
   .col-4.pl-5.pt-2
     .card  
       .product-images-container.card-body
-        .image
-          = cl_image_tag(@product.images.first.image_url, alt: 'Image', class: "product-large-image")
-        .images-row.selector
-          - @product.images.each do |img|
-            = cl_image_tag(img.image_url, alt: "Small image", class: "product-small-image")
+        - if @product.images.present?
+          .image
+            = cl_image_tag(@product.images.first.image_url, alt: 'Image', class: "product-large-image")
+          .images-row.selector
+            - @product.images.each do |img|
+              = cl_image_tag(img.image_url, alt: "Small image", class: "product-small-image")
   .col-6.offset-1.pl-5.pt-2.pr-5
     .card
       .card-header
@@ -18,13 +19,11 @@
             = "Lot number: " + @product.id.to_s.rjust(5, '0')
       .card-body
         //Add product to auction
-        - if !@product.has_auction? && user_signed_in?
-          = form_for (Auction.new) do |f|
-            = f.hidden_field :product_id, :value => @product.id
-            = f.hidden_field :user_id, :value => current_user.id
-            = f.submit "Add to auction", class: "btn btn-primary btn-sm"
-        - elsif @product.has_auction? && (user_signed_in? || admin_signed_in?)
-          .btn.btn-primary.btn-sm= link_to "Remove from auction", auction_path(@product.auction.id), method: :delete
+        - if !@product.has_auction? && product_owner?
+          = render '/auctions/form'
+        - elsif @product.has_auction? && product_owner?
+          .btn.btn-primary.btn-sm
+            = link_to "Remove from auction", auction_path(@product.auction.id), method: :delete
           
         //Add product to Favorites(Follow)
         
