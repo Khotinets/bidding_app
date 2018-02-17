@@ -26,7 +26,7 @@
               %br/
               = f.password_field :password_confirmation, class: "form-control", autocomplete: "off"
               
-            //profile fields
+            /profile fields
             = f.fields_for :profile_attributes, Profile.new do |p|
               .form-group
                 = p.label :name, class: "control-label"

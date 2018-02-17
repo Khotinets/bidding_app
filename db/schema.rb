@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129192058) do
+ActiveRecord::Schema.define(version: 20180216231531) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(version: 20180129192058) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "starts_at"
+    t.datetime "ends_at"
     t.index ["product_id"], name: "index_auctions_on_product_id", unique: true
   end
 
