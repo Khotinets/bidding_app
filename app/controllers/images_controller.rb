@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /images
@@ -25,14 +26,17 @@ class ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(image_params)
-
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
+    unless current_user.id == @image.product.user_id
+      redirect_to products_path, notice: 'You are not the owner of the product' 
+    else
+      respond_to do |format|
+        if @image.save
+          format.html { redirect_to @image, notice: 'Image was successfully created.' }
+          format.json { render :show, status: :created, location: @image }
+        else
+          format.html { render :new }
+          format.json { render json: @image.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -64,7 +68,7 @@ class ImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_image
-      @image = Image.find(params[:id])
+      @image = current_user.images.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

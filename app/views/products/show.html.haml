@@ -25,7 +25,8 @@
         - elsif @product.has_auction? && product_owner?
           .btn.btn-primary.btn-sm
             = link_to "Remove from auction", auction_path(@product.auction.id), method: :delete
-        /Add product to Favorites(Follow)
+        /Add product image
+        = render '/images/form' unless !product_owner?
         
 
       .card-header.pl-3.pt-1.pr-3.pb-1

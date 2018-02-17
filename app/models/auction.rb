@@ -5,6 +5,10 @@ class Auction < ApplicationRecord
     validates_uniqueness_of :product_id
     validates_presence_of :starts_at, :ends_at
     
+    def owner?(signed_user)
+       user == signed_user 
+    end
+    
     # Check if auction is in progress
     def active?
         starts_at < Time.now && Time.now < ends_at
@@ -25,4 +29,5 @@ class Auction < ApplicationRecord
     def time_left_to_end
        ends_at - Time.now
     end
+    
 end

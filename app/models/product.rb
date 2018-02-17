@@ -6,6 +6,10 @@ class Product < ApplicationRecord
     has_many :favorites, dependent: :destroy
     has_many :bids
     
+    def owner?(signed_user)
+       user == signed_user 
+    end
+    
     def has_auction?
         auction.present?
     end
