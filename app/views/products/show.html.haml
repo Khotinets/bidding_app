@@ -20,13 +20,13 @@
       .card-body
       
         /Add product to auction
-        - if !@product.has_auction? && product_owner?
+        - if !@product.has_auction? && @product.owner?(current_user)
           = render '/auctions/form'
-        - elsif @product.has_auction? && product_owner?
+        - elsif @product.has_auction? && @product.owner?(current_user)
           .btn.btn-primary.btn-sm
             = link_to "Remove from auction", auction_path(@product.auction.id), method: :delete
         /Add product image
-        = render '/images/form' unless !product_owner?
+        = render '/images/form' unless !@product.owner?(current_user)
         
 
       .card-header.pl-3.pt-1.pr-3.pb-1
@@ -54,8 +54,6 @@
   %p
     %strong Current price:
     = @product.current_price
-  %p
-    %strong Auction status:
-    = @product.auction_status
+
   
   
