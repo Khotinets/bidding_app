@@ -35,5 +35,7 @@ Rails.application.routes.draw do
    get '/admins/sign_out' => 'devise/sessions#destroy'
   end
   root 'static_pages#index'
- 
+  
+  mount ActionCable.server, at: '/cable'
+  
 end

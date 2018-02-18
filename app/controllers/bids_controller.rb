@@ -30,6 +30,7 @@ class BidsController < ApplicationController
     if @auction.active?
       respond_to do |format|
         if @bid.save
+          ActionCable.server.broadcast 'bid_channel', user_id: @bid.user_id, product_id: @bid.product_id, quantity: @bid.quantity, auction_id: @bid.auction_id
           format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
           format.json { render :show, status: :created, location: @bid }
         else
