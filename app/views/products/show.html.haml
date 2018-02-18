@@ -1,6 +1,4 @@
-%p#notice= notice
-.row.no-gutters.product-show
-
+.row.no-gutters.product-show.mt-3
   .col-4.pl-5.pt-2
     .card  
       .product-images-container.card-body
@@ -43,14 +41,14 @@
             = link_to 'Edit', edit_user_product_path(@product)
             |
             = link_to 'Back', products_path
-            
-    = render '/bids/bids', product: @product if @product.bids.any?
-        
-  .col-12.pt-5.pl-5.pr-5
-    .card.mb-5
-      .card-header
-        %p.h5 Descritpion
-      .card-body.pl-5.pr-5
-        %p.description= @product.description
+    = render '/bids/bids', product: @product if @product.has_auction? || @product.bids.any?
+   
+  .row-no-gutters     
+    .col.pt-5.pl-5.pr-5
+      .card.mb-5
+        .card-header
+          %p.h5 Descritpion
+        .card-body.pl-5.pr-5
+          %p.description= @product.description
   
   

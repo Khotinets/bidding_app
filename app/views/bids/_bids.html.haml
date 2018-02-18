@@ -1,6 +1,6 @@
 .card.bids.mt-3
   .card-header
     .h5 Bids
-  .card-body.bids
+  .card-body.bids{:id => @product.auction.id}
     - @product.bids.each do |bid|
       = render '/bids/bid', bid: bid
