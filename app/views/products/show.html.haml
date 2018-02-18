@@ -38,8 +38,11 @@
             .username
               = "Author: " + @product.user.profile.name.to_s
           .col.text-right
-            = link_to 'Edit', edit_user_product_path(@product)
-            |
+            - unless !@product.owner?(current_user)
+              = link_to 'Delete', user_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }
+              |
+              = link_to 'Edit', edit_user_product_path(@product)
+              |
             = link_to 'Back', products_path
     = render '/bids/bids', product: @product if @product.has_auction? || @product.bids.any?
    
