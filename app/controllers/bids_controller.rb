@@ -28,15 +28,8 @@ class BidsController < ApplicationController
     @bid = Bid.new(bid_params)
     @auction = Auction.find_by_id(@bid.auction_id) 
     if @auction.active?
-      respond_to do |format|
-        if @bid.save
-          ActionCable.server.broadcast 'bid_channel', user_id: @bid.user_id, product_id: @bid.product_id, quantity: @bid.quantity, auction_id: @bid.auction_id
-          format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
-          format.json { render :show, status: :created, location: @bid }
-        else
-          format.html { render :new }
-          format.json { render json: @bid.errors, status: :unprocessable_entity }
-        end
+      if @bid.save
+        ActionCable.server.broadcast 'bid_channel', bid: render_bid(@bid)
       end
     else
       redirect_to @auction.product, notice: 'Auction has finised or is not started yet'
@@ -62,7 +55,7 @@ class BidsController < ApplicationController
   def destroy
     @bid.destroy
     respond_to do |format|
-      format.html { redirect_to user_bids_url, notice: 'Bid was successfully destroyed.' }
+      format.html { redirect_to bids_url, notice: 'Bid was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -76,5 +69,9 @@ class BidsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
       params.require(:bid).permit(:user_id, :product_id, :quantity, :auction_id)
+    end
+    
+    def render_bid(bid)
+      render(partial: '/bids/bid', locals: { bid: bid })
     end
 end

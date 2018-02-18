@@ -1,12 +1,6 @@
 .card.bids.mt-3
   .card-header
     .h5 Bids
-  .card-body
+  .card-body.bids
     - @product.bids.each do |bid|
-      .row.no-gutters
-        .col-3
-          .h6= bid.user.profile.name
-        .col-3
-          .h6= bid.quantity
-        .col-3
-          .h6= bid.created_at.strftime("%d.%m.%y - %H:%M")
+      = render '/bids/bid', bid: bid

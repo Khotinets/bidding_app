@@ -7,4 +7,4 @@ App.bid = App.cable.subscriptions.create "BidChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    alert data.content
+    $('.card-body.bids').append data.bid
