@@ -1,5 +1,6 @@
 %p#notice= notice
 .row.no-gutters.product-show
+
   .col-4.pl-5.pt-2
     .card  
       .product-images-container.card-body
@@ -9,14 +10,16 @@
           .images-row.selector
             - @product.images.each do |img|
               = cl_image_tag(img.image_url, alt: "Small image", class: "product-small-image")
+              
   .col-6.offset-1.pl-5.pt-2.pr-5
-    .card
+    .card.product-details
       .card-header
         .row.no-gutters
           .col-9.productname.pt-2
-            %p.h5= @product.name
+            .h5= @product.name
           .col-3.text-right.productlot.pt-2.pr-3
             = "Lot number: " + @product.id.to_s.rjust(5, '0')
+
       .card-body
       
         /Add product to auction
@@ -25,10 +28,12 @@
         - elsif @product.has_auction? && @product.owner?(current_user)
           .btn.btn-primary.btn-sm
             = link_to "Remove from auction", auction_path(@product.auction.id), method: :delete
+            
+        /Bid form  
+        = render '/bids/form', bid: @bid if @product.has_auction? && user_signed_in? && @product.auction.started?
+        
         /Add product image
         = render '/images/form' unless !@product.owner?(current_user)
-        
-
       .card-header.pl-3.pt-1.pr-3.pb-1
         .row.no-gutters
           .col.text-left
@@ -38,22 +43,14 @@
             = link_to 'Edit', edit_user_product_path(@product)
             |
             = link_to 'Back', products_path
+            
+    = render '/bids/bids', product: @product
+        
   .col-12.pt-5.pl-5.pr-5
     .card.mb-5
       .card-header
         %p.h5 Descritpion
       .card-body.pl-5.pr-5
         %p.description= @product.description
-
--#
-    %strong Category:
-    = @product.category_id
-  %p
-    %strong Minimal price:
-    = @product.minimal_price
-  %p
-    %strong Current price:
-    = @product.current_price
-
   
   

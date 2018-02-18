@@ -1,4 +1,5 @@
 class BidsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_bid, only: [:show, :edit, :update, :destroy]
 
   # GET /bids
@@ -25,15 +26,19 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(bid_params)
-
-    respond_to do |format|
-      if @bid.save
-        format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
-        format.json { render :show, status: :created, location: @bid }
-      else
-        format.html { render :new }
-        format.json { render json: @bid.errors, status: :unprocessable_entity }
+    @auction = Auction.find_by_id(@bid.auction_id) 
+    if @auction.active?
+      respond_to do |format|
+        if @bid.save
+          format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
+          format.json { render :show, status: :created, location: @bid }
+        else
+          format.html { render :new }
+          format.json { render json: @bid.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      redirect_to @auction.product, notice: 'Auction has finised or is not started yet'
     end
   end
 
@@ -56,7 +61,7 @@ class BidsController < ApplicationController
   def destroy
     @bid.destroy
     respond_to do |format|
-      format.html { redirect_to bids_url, notice: 'Bid was successfully destroyed.' }
+      format.html { redirect_to user_bids_url, notice: 'Bid was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +74,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:user_id, :product_id, :quantity, :limit)
+      params.require(:bid).permit(:user_id, :product_id, :quantity, :auction_id)
     end
 end

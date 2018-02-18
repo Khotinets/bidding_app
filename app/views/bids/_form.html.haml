@@ -1,0 +1,9 @@
+= form_for(Bid.new) do |form|
+  = form.hidden_field:user_id, value: current_user.id
+  = form.hidden_field :auction_id, value: @product.auction.id
+  = form.hidden_field :product_id, value: @product.id
+  .field
+    = form.label :quantity
+    = form.number_field :quantity, id: :bid_quantity
+  .actions
+    = form.submit 'Bid'

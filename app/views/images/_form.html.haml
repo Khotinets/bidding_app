@@ -5,6 +5,6 @@
   .field
     = form.label :image_url
     = form.hidden_field(:image_url_cache)
-    = form.file_field (:image_url)
+    = form.file_field(:image_url)
   .actions
-    = form.submit
+    = form.submit 'Add image'
