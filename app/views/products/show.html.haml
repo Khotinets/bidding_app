@@ -44,7 +44,7 @@
             |
             = link_to 'Back', products_path
             
-    = render '/bids/bids', product: @product
+    = render '/bids/bids', product: @product if @product.bids.any?
         
   .col-12.pt-5.pl-5.pr-5
     .card.mb-5
