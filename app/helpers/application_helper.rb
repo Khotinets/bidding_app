@@ -1,5 +1,4 @@
 module ApplicationHelper
-    
     #combine page title with main title
     def full_title(page_title = '')
         main_title = "Bidbook.com"

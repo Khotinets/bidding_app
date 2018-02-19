@@ -21,23 +21,27 @@
                   - elsif product.minimal_price?
                     .badge.badge-danger.pl-1.pr-1
                       Auction
-                .col-4.auction.pl-1.pr-1
+                .col-7.auction.pl-1.pr-1
                   - if product.has_auction? && product.auction.active?
                     = "Auction in progress, ends in " + distance_of_time_in_words(product.auction.time_left_to_end)
                   - elsif product.has_auction? && !product.auction.started?
                     = "Auction starts in " + distance_of_time_in_words(product.auction.time_left_to_start)
                   - elsif product.has_auction? && product.auction.finished?
-                    = "Auction has ended"
+                    = "Auction is over"
+                  
                 .col-3.pr-3
+                  .row.no-gutters.align-items-center
+                    .col-1
+                      
+                    .col-11
+                      = link_to "View product", product, role: "button", class: "btn btn-secondary btn-sm btn-block"
+                /bottom-right
+                .col-3.align-self-end.text-center.categoryname.pb-2
+                  = "Category: " + product.category.name
+                .col-3.align-self-end.text-center.username.pb-2
+                  = "Author: " + product.user.profile.name
+                .col-3.align-self-end.text-center.datetime.pb-2
+                  = product.created_at.strftime("%d.%m.%y - %H:%M")
+                .col-3.align-self-end.text-right.pb-2.pr-2
                   /Favorite product button helper call
                   = choose_fav_button(product)
-                .col-3.pr-3
-                  = link_to "Buy", product, role: "button", class: "btn btn-secondary btn-sm btn-block"
-                /bottom-right
-                .col-6
-                .col-2.align-self-end.categoryname.pb-2
-                  = "Category: " + product.category.name
-                .col-2.align-self-end.username.pb-2
-                  = "Author: " + product.user.profile.name
-                .col-2.align-self-end.text-right.datetime.pb-2.pr-3
-                  = product.created_at.strftime("%d.%m.%y - %H:%M")

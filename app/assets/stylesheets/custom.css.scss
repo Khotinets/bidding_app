@@ -132,6 +132,13 @@ p {
     }
   }
   .productright{
+    min-height: 8vw;
+    .far.fa-star{
+      color: grey;
+    }
+    .fas.fa-star{
+      color: red;
+    }
     .username, .productlot, .categoryname, .datetime{
       font-size: 0.8em;
       color: grey;
