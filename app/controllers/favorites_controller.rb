@@ -35,6 +35,17 @@ class FavoritesController < ApplicationController
     end
   end
   
+  def clear_favorites
+    @user = current_user
+    @favorites = @user.favorites.all
+    @favorites.each do |favorite|
+      favorite.destroy
+    end
+    respond_to do |format|
+      format.html { redirect_to favorites_url, notice: 'Favorites was successfully destroyed.' }
+    end
+  end
+  
   def favorite
     @user = current_user
     @product = Product.find(params[:product_id])

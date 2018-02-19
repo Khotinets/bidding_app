@@ -17,6 +17,8 @@ Rails.application.routes.draw do
    end
   end
   
+  match 'clear_favorites', to: 'favorites#clear_favorites', via: :get
+  
   resources :images
   resources :favorites
   resources :auctions
