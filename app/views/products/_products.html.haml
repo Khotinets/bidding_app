@@ -41,7 +41,7 @@
                 .col-3.align-self-end.text-center.username.pb-2
                   = "Author: " + product.user.profile.name
                 .col-3.align-self-end.text-center.datetime.pb-2
-                  = product.created_at.strftime("%d.%m.%y - %H:%M")
+                  = product.created_at.strftime("%d.%m.%y - %H:%M (%Z)")
                 .col-3.align-self-end.text-right.pb-2.pr-2
                   /Favorite product button helper call
                   = choose_fav_button(product)

@@ -27,7 +27,7 @@ $( document ).ready(function() {
     
     /* Product show - small images scrolling */
     $(function() {  
-    $(".selector").niceScroll({cursorcolor:"#dad6d6"});
+    $(".selector, div.description.card > div.card-body, div.bids.card > div.card-body").niceScroll({cursorcolor:"#dad6d6"});
 });
 });
 

@@ -174,8 +174,9 @@ p {
   }
   .product-images-container{
     .image{
+      text-align: center;
       img{
-        width: 100%;
+        width: auto;
         margin: 0;
         height: 250px;
       }
@@ -198,9 +199,18 @@ p {
       padding-bottom: 8px;
     }
   }
+  
   .description{
-    
+    .card-body{
+      height: 300px;
+      overflow: auto;
+    }
+  }
+  
+  .card-body.bids{
+    max-height: 150px;
+    overflow: auto;
   }
 }
-
+/*Bids*/
 /* Categories */

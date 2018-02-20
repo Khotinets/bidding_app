@@ -1,7 +1,8 @@
-.row.no-gutters
-  .col-3
-    .h6= bid.user.profile.name
-  .col-3
-    .h6= bid.quantity
-  .col-3
-    .h6= bid.created_at.strftime("%d.%m.%y - %H:%M")
+%div{:id => bid.id}
+  .row.no-gutters
+    .col-3
+      .h6= bid.user.profile.name
+    .col-3
+      .h6= bid.quantity
+    .col-3
+      .h6= bid.created_at.strftime("%d.%m.%y - %H:%M")

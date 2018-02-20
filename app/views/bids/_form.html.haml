@@ -2,8 +2,8 @@
   = form.hidden_field:user_id, value: current_user.id
   = form.hidden_field :auction_id, value: @product.auction.id
   = form.hidden_field :product_id, value: @product.id
-  .field
-    = form.label :quantity
-    = form.number_field :quantity, id: :bid_quantity
+  .form-group
+    = form.label :quantity, 'Sum'
+    = form.number_field :quantity, id: :bid_quantity, class: 'form-control'
   .actions
-    = form.submit 'Bid'
+    = form.submit 'Bid', class: 'btn btn-primary btn-block'

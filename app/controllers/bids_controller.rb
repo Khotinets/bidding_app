@@ -29,7 +29,7 @@ class BidsController < ApplicationController
     @auction = Auction.find_by_id(@bid.auction_id) 
     if @auction.active?
       if @bid.save
-        ActionCable.server.broadcast 'bid_channel', bid: render_bid(@bid), auction_id: @bid.auction_id
+        ActionCable.server.broadcast 'bid_channel', bid: render_bid(@bid), auction_id: @bid.auction_id, bid_id: @bid.id
       end
     else
       redirect_to @auction.product, notice: 'Auction has finised or is not started yet'

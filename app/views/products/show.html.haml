@@ -17,8 +17,15 @@
               .col-5.text-right.productlot.pt-2.pr-3
                 = "Lot number: " + @product.id.to_s.rjust(5, '0')
           .card-body
-            /Bid form  
-            = render '/bids/form', bid: @bid if user_signed_in? && @product.auction.active?
+            .row.no-gutters
+              /Bid form  
+              - unless !@product.has_auction?
+                .col-8
+                .col-4
+                  = render '/bids/form', bid: @bid if user_signed_in? && @product.auction.active?
+                  - if user_signed_in? && @product.auction.finished?
+                    Winner: 
+                    = link_to @product.auction.winner, '#'
           .card-header.pl-3.pt-2.pr-3.pb-1
             .row.no-gutters
               .col.text-left
@@ -27,7 +34,7 @@
               .col.text-right
         = render '/bids/bids', product: @product if @product.has_auction? || @product.bids.any?
     /Product description
-    .card.mb-3.mt-3.ml-1.mr-2
+    .description.card.mb-3.mt-3.ml-1.mr-2
       .card-header
         %p.h5 Descritpion
       .card-body.pl-5.pr-5
