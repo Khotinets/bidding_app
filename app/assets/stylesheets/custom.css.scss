@@ -98,7 +98,7 @@ p {
 /*Cards*/
 #back {
   padding-top: 0.7rem;
-  padding-bottom: 0.7rem;
+  padding-bottom: 0.5rem;
 }
 
 .card {
@@ -144,11 +144,11 @@ p {
   }
   .productright{
     min-height: 8vw;
-    .far.fa-star{
+    .far{
       color: grey;
     }
-    .fas.fa-star{
-      color: #ea4545e0;
+    .fas{
+      color: red;
     }
     .username, .productlot, .categoryname, .datetime{
       font-size: 0.8em;
