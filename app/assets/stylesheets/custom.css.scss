@@ -96,6 +96,11 @@ p {
 }
 
 /*Cards*/
+#back {
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
 .card {
   box-shadow: $shadow;
   border: none;
@@ -103,6 +108,12 @@ p {
     border: none;
     
   } 
+  .card-body{
+    overflow: hidden;
+    a{
+      text-decoration: none;
+    }
+  }
 }
 
 /*Products*/
@@ -137,7 +148,7 @@ p {
       color: grey;
     }
     .fas.fa-star{
-      color: red;
+      color: #ea4545e0;
     }
     .username, .productlot, .categoryname, .datetime{
       font-size: 0.8em;
@@ -153,6 +164,14 @@ p {
 
 /*Product Show*/
 .product-show{
+  .btn.btn-link{
+    text-decoration: none;
+    padding:0;
+    overflow: hidden;
+    .card-header{
+      background-color: white;
+    }
+  }
   .product-images-container{
     .image{
       img{

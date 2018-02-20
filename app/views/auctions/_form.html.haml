@@ -1,8 +1,10 @@
 = form_for (Auction.new) do |f|
   = f.hidden_field :product_id, :value => @product.id
   = f.hidden_field :user_id, :value => @product.user_id
-  = f.label :starts_at
-  = f.datetime_field :starts_at, id: :starts_at
-  = f.label :ends_at
-  = f.datetime_field :ends_at, id: :ends_at
+  .form-group
+    = f.label :starts_at
+    = f.datetime_field :starts_at, id: :starts_at, class: 'form-control'
+  .form-group
+    = f.label :ends_at
+    = f.datetime_field :ends_at, id: :ends_at, class: 'form-control'
   = f.submit "Add to auction", class: "btn btn-primary btn-sm"

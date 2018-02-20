@@ -1,0 +1,8 @@
+.card  
+  .product-images-container.card-body
+    - if @product.images.present?
+      .image
+        = cl_image_tag(@product.images.first.image_url, alt: 'Image', class: "product-large-image")
+      .images-row.selector
+        - @product.images.each do |img|
+          = cl_image_tag(img.image_url, alt: "Small image", class: "product-small-image")

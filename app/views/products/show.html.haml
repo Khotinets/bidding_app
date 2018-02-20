@@ -1,57 +1,40 @@
 .row.no-gutters.product-show.mt-3
-  .col-4.pl-5.pt-2
-    .card  
-      .product-images-container.card-body
-        - if @product.images.present?
-          .image
-            = cl_image_tag(@product.images.first.image_url, alt: 'Image', class: "product-large-image")
-          .images-row.selector
-            - @product.images.each do |img|
-              = cl_image_tag(img.image_url, alt: "Small image", class: "product-small-image")
-              
-  .col-6.offset-1.pl-5.pt-2.pr-5
-    .card.product-details
+  .col-2.pl-2.pr-2.pt-2
+    = render '/products/owner_panel', product: @product unless !@product.owner?(current_user)
+    .card
+      #back.card-body.text-center
+        .h6= link_to 'Back', products_path
+  .col-8
+    .row.no-gutters
+      .col-5.pl-1.pt-2
+        = render '/products/images', product: @product
+      .col-7.pl-2.pt-2.pr-2
+        .card.product-details
+          .card-header
+            .row.no-gutters
+              .col-7.productname.pt-2
+                .h5= @product.name
+              .col-5.text-right.productlot.pt-2.pr-3
+                = "Lot number: " + @product.id.to_s.rjust(5, '0')
+    
+          .card-body
+            /Bid form  
+            = render '/bids/form', bid: @bid if @product.has_auction? && user_signed_in? && @product.auction.started?
+          .card-header.pl-3.pt-2.pr-3.pb-1
+            .row.no-gutters
+              .col.text-left
+                .username
+                  = "Author: " + @product.user.profile.name.to_s
+              .col.text-right
+                
+        = render '/bids/bids', product: @product if @product.has_auction? || @product.bids.any?
+    /Product description
+    .card.mb-3.mt-3.ml-1.mr-2
       .card-header
-        .row.no-gutters
-          .col-9.productname.pt-2
-            .h5= @product.name
-          .col-3.text-right.productlot.pt-2.pr-3
-            = "Lot number: " + @product.id.to_s.rjust(5, '0')
+        %p.h5 Descritpion
+      .card-body.pl-5.pr-5
+        %p.description= @product.description
+  .col-2
+    
 
-      .card-body
-      
-        /Add product to auction
-        - if !@product.has_auction? && @product.owner?(current_user)
-          = render '/auctions/form'
-        - elsif @product.has_auction? && @product.owner?(current_user)
-          .btn.btn-primary.btn-sm
-            = link_to "Remove from auction", auction_path(@product.auction.id), method: :delete
-            
-        /Bid form  
-        = render '/bids/form', bid: @bid if @product.has_auction? && user_signed_in? && @product.auction.started?
-        
-        /Add product image
-        = render '/images/form' unless !@product.owner?(current_user)
-      .card-header.pl-3.pt-1.pr-3.pb-1
-        .row.no-gutters
-          .col.text-left
-            .username
-              = "Author: " + @product.user.profile.name.to_s
-          .col.text-right
-            - unless !@product.owner?(current_user)
-              = link_to 'Delete', user_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }
-              |
-              = link_to 'Edit', edit_user_product_path(@product)
-              |
-            = link_to 'Back', products_path
-    = render '/bids/bids', product: @product if @product.has_auction? || @product.bids.any?
-   
-  .row-no-gutters     
-    .col.pt-5.pl-5.pr-5
-      .card.mb-5
-        .card-header
-          %p.h5 Descritpion
-        .card-body.pl-5.pr-5
-          %p.description= @product.description
-  
   

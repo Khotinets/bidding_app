@@ -2,9 +2,9 @@
 = form_for(Image.new) do |form|
   = form.hidden_field :user_id, value: current_user.id
   = form.hidden_field :product_id, value: @product.id
-  .field
-    = form.label :image_url
+  .form-group
+    = form.label :image, class: 'form-control-file'
     = form.hidden_field(:image_url_cache)
     = form.file_field(:image_url)
   .actions
-    = form.submit 'Add image'
+    = form.submit 'Add image', role: 'button', class: 'btn btn-primary btn-sm'

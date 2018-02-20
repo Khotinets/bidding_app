@@ -1,0 +1,32 @@
+#accordion.pb-3
+  .card
+    %button.btn.btn-link{"aria-controls" => "collapseOne", "aria-expanded" => "true", "data-target" => "#collapseOne", "data-toggle" => "collapse"}
+      .card-header
+        .h6.mb-0
+          Controls
+    #collapseOne.collapse.collapsed{"aria-labelledby" => "headingOne", "data-parent" => "#accordion"}
+      .card-body
+        = link_to 'Delete', user_product_path(@product), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-sm btn-block'
+        = link_to 'Edit', edit_user_product_path(@product), class: 'btn btn-primary btn-sm btn-block'
+  .card
+    %button.btn.btn-link.collapsed{"aria-controls" => "collapseTwo", "aria-expanded" => "false", "data-target" => "#collapseTwo", "data-toggle" => "collapse"}
+      .card-header
+        .h6.mb-0
+          Add image
+    #collapseTwo.collapse{"aria-labelledby" => "headingTwo", "data-parent" => "#accordion"}
+      .card-body
+        /Add product image
+        = render '/images/form'
+  .card
+    %button.btn.btn-link.collapsed{"aria-controls" => "collapseThree", "aria-expanded" => "false", "data-target" => "#collapseThree", "data-toggle" => "collapse"}
+      .card-header
+        .h6.mb-0
+          Auction
+    #collapseThree.collapse{"aria-labelledby" => "headingThree", "data-parent" => "#accordion"}
+      .card-body
+        /Add product to auction
+        - if !@product.has_auction?
+          = render '/auctions/form'
+        - elsif @product.has_auction?
+          .text-center
+            = link_to "Remove from auction", auction_path(@product.auction.id), method: :delete, class: 'btn btn-primary btn-sm'
