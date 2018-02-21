@@ -220,7 +220,7 @@ p {
       padding: 0.3em 0em 0em 0.3em;
     }
     .new-bid{
-      animation-duration: 7s;
+      animation-duration: 6s;
       animation-name: bid-appear;
     }
   }
@@ -240,7 +240,7 @@ p {
 
 @keyframes bid-appear {
     from {
-        background: #ffff7a;
+        background: #ffffa3;
         box-shadow: 3px 5px 19px 2px #ffc;
         border-radius: 10px;
     }

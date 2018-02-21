@@ -20,7 +20,7 @@
             .row.no-gutters
               - unless !@product.has_auction?
                 .col-8
-                  .bids-sum
+                  .bids-sum{:id => @product.auction.id}
                     = '$' + @product.auction.bids_sum.to_s
                 /Bid form 
                 .col-4

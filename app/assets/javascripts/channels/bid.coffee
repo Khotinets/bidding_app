@@ -7,6 +7,7 @@ App.bid = App.cable.subscriptions.create "BidChannel",
 
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('.card-body.bids' + '#' + data.auction_id).prepend('<div class = "new-bid">' + data.bid + '</div>')
-    $('.bids-sum').replaceWith('<div class= "bids-sum">' +'$'+ data.bids_sum + '</div>')
-    $('.bids-sum, #' + data.bid_id).hide().fadeIn(500)
+    $('#' + data.auction_id + '.card-body.bids').prepend('<div class = "new-bid">' + data.bid + '</div>')
+    $('#' + data.auction_id + '.bids-sum').replaceWith('<div class= "bids-sum" id = "' + data.auction_id+'">' +'$'+ data.bids_sum + '</div>')
+    $('#' + data.auction_id + '.bids-sum').hide().fadeIn(500)
+    $('#' + data.bid_id).hide().fadeIn(500)
