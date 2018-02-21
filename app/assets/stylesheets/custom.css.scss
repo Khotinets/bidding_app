@@ -10,7 +10,7 @@ $main-color-hover: #2ebce6;
       width: auto;
       margin: 1vw;
     }
-    
+
 /*Bootstrap*/
 .img-fluid {
   max-width: 100%;
@@ -143,6 +143,12 @@ p {
     }
   }
   .productright{
+    .auction-active{
+      animation-duration: 1s;
+      animation-name: auct-active;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
     min-height: 8vw;
     .far{
       color: grey;
@@ -210,7 +216,36 @@ p {
   .card-body.bids{
     max-height: 150px;
     overflow: auto;
+    .bid{
+      padding: 0.3em 0em 0em 0.3em;
+    }
+    .new-bid{
+      animation-duration: 7s;
+      animation-name: bid-appear;
+    }
   }
 }
 /*Bids*/
 /* Categories */
+
+
+@keyframes auct-active {
+    from {
+        background: #f9bec3;
+    }
+    to {
+        background: #dc3545;
+    }
+}
+
+@keyframes bid-appear {
+    from {
+        background: #ffff7a;
+        box-shadow: 3px 5px 19px 2px #ffc;
+        border-radius: 10px;
+    }
+    to {
+        background: white;
+        box-shadow: none;
+    }
+}

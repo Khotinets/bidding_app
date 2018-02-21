@@ -18,14 +18,16 @@
                 = "Lot number: " + @product.id.to_s.rjust(5, '0')
           .card-body
             .row.no-gutters
-              /Bid form  
               - unless !@product.has_auction?
                 .col-8
+                  .bids-sum
+                    = '$' + @product.auction.bids_sum.to_s
+                /Bid form 
                 .col-4
                   = render '/bids/form', bid: @bid if user_signed_in? && @product.auction.active?
                   - if user_signed_in? && @product.auction.finished?
                     Winner: 
-                    = link_to @product.auction.winner, '#'
+                    = link_to @product.auction.winner, '#' unless !@product.bids.any?
           .card-header.pl-3.pt-2.pr-3.pb-1
             .row.no-gutters
               .col.text-left

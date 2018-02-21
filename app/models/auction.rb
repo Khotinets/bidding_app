@@ -30,11 +30,15 @@ class Auction < ApplicationRecord
        ends_at - Time.now
     end
     
-    def high_bid
-       self.bids.order(quantity: :desc).first
+    def last_bid
+       self.bids.order(created_at: :desc).first
+    end
+    
+    def bids_sum
+       bids.all.sum(&:quantity) 
     end
     
     def winner
-       self.high_bid.user.profile.name 
+       self.last_bid.user.profile.name 
     end
 end
