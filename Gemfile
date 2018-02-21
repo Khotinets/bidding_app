@@ -27,6 +27,7 @@ gem 'carrierwave'
 gem 'cloudinary'
 gem 'autoprefixer-rails'
 gem 'nicescroll-rails'
+gem 'redis', '~> 3.3', '>= 3.3.1'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
