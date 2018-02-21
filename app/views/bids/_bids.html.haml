@@ -2,5 +2,5 @@
   .card-header
     .h5 Bids
   .card-body.bids{:id => @product.auction.id}
-    - @product.bids.order("created_at DESC").each do |bid|
+    - @product.auction.bids.order("created_at DESC").each do |bid|
       = render '/bids/bid', bid: bid

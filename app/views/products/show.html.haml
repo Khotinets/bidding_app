@@ -27,14 +27,14 @@
                   = render '/bids/form', bid: @bid if user_signed_in? && @product.auction.active?
                   - if user_signed_in? && @product.auction.finished?
                     Winner: 
-                    = link_to @product.auction.winner, '#' unless !@product.bids.any?
+                    = link_to @product.auction.winner, '#' unless !@product.auction.bids.any?
           .card-header.pl-3.pt-2.pr-3.pb-1
             .row.no-gutters
               .col.text-left
                 .username
                   = "Author: " + @product.user.profile.name.to_s
               .col.text-right
-        = render '/bids/bids', product: @product if @product.has_auction? || @product.bids.any?
+        = render '/bids/bids', product: @product if @product.has_auction?
     /Product description
     .description.card.mb-3.mt-3.ml-1.mr-2
       .card-header

@@ -1,7 +1,6 @@
 class Auction < ApplicationRecord
     belongs_to :product
-    belongs_to :user
-    has_many :bids
+    has_many :bids, dependent: :destroy
     validates_uniqueness_of :product_id
     validates_presence_of :starts_at, :ends_at
     
