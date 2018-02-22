@@ -28,6 +28,22 @@
                   - if user_signed_in? && @product.auction.finished?
                     Winner: 
                     = link_to @product.auction.winner, '#' unless !@product.auction.bids.any?
+              - else
+                .col-4
+                  .bids-sum
+                    = '$' + @product.minimal_price.to_s
+                .col-8.align-self-center
+                  Product is not added to auction yet.
+                  
+              - if @product.has_auction? && @product.auction.active?
+                .col-8.align-self-center
+                  = "Auction in progress, ends in " + distance_of_time_in_words(@product.auction.time_left_to_end)
+              - elsif @product.has_auction? && !@product.auction.started?
+                .col-8.align-self-center
+                  = "Auction starts in " + distance_of_time_in_words(@product.auction.time_left_to_start)
+              - elsif @product.has_auction? && @product.auction.finished?
+                .col-8.align-self-center
+                  = "Auction is over"
           .card-header.pl-3.pt-2.pr-3.pb-1
             .row.no-gutters
               .col.text-left

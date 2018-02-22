@@ -1,6 +1,6 @@
 .card.bids.mt-3
   .card-header
     .h5 Bids
-  .card-body.bids{:id => @product.auction.id}
+  .text-center.card-body.bids{:id => @product.auction.id}
     - @product.auction.bids.order("created_at DESC").each do |bid|
       = render '/bids/bid', bid: bid

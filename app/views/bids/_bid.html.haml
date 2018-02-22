@@ -1,8 +1,8 @@
 %div{:id => bid.id, :class => 'bid'}
   .row.no-gutters
     .col-3
-      .h6= bid.user.profile.name
+      = bid.user.profile.name
     .col-3
-      .h6= "$" + bid.quantity.to_s
+      = "$" + bid.quantity.to_s
     .col-3
-      .h6= bid.created_at.strftime("%d.%m.%y - %H:%M")
+      = bid.created_at.strftime("%d.%m.%y - %H:%M")

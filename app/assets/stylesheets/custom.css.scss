@@ -23,6 +23,7 @@ $main-color-hover: #2ebce6;
 /*Typography*/
 body {
   background-color: #fbfbfb;
+  font-family: 'Arimo', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -178,6 +179,12 @@ p {
       background-color: white;
     }
   }
+  .product-details{
+    .bids-sum{
+      color: yellowgreen;
+      font-size: 2.5em;
+    }
+  }
   .product-images-container{
     .image{
       text-align: center;
@@ -223,6 +230,8 @@ p {
       animation-duration: 6s;
       animation-name: bid-appear;
     }
+    font-size: 0.85em;
+    font-style: italic;
   }
 }
 /*Bids*/
