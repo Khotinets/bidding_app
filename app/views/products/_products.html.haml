@@ -30,6 +30,8 @@
                     = "Auction starts in " + distance_of_time_in_words(product.auction.time_left_to_start)
                   - elsif product.has_auction? && product.auction.finished?
                     = "Auction is over"
+                  -else 
+                    Product is not added to auction yet.
                   
                 .col-3.pr-3
                   .row.no-gutters.align-items-center
